@@ -5,5 +5,5 @@ public interface IPlayer {
 	public boolean isHumanPLayer();
 	public String getName();
 	
-	public IGameState play(IGameState state);
+	public IGameState play(IGameState state, PlayerSymbol symbol);
 }

@@ -9,16 +9,17 @@ public interface IGameState {
 	public IGameState getCopy();
 	
 	public int getBoardSize();
-	public int setBoardSize(int boardSize);
+	public void setBoardSize(int boardSize);
 	
 	/**
 	 * How many symbols has to be in the line
 	 * @return
 	 */
 	public int getWinCondition();	
-	public int setWinCondition(int winCondition);
+	public void setWinCondition(int winCondition);
 	
 	public CellState getValueOfCell(int x, int y);
 	public CellState[][] getCellsValues();
-	public CellState setValueOfCell(CellState state, int x, int y);
+	public void setValueOfCell(CellState state, int x, int y);
+	public void setValueOfCell(PlayerSymbol symbol, int x, int y);
 }

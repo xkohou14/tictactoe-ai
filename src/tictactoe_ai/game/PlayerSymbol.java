@@ -8,4 +8,12 @@ public enum PlayerSymbol {
     private PlayerSymbol(CellState aRef) {
         this.aRef = aRef;
     }
+    public CellState get() {
+    	return this.aRef;
+    }
+    public PlayerSymbol oposite() {
+    	if (this.aRef == CellState.CIRCLE)
+    		return CROSS;
+    	return CIRCLE;
+    }
 }
