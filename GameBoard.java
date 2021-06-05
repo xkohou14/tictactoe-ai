@@ -1,3 +1,4 @@
+package tictactoe_ai.gui;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
@@ -9,9 +10,9 @@ public class GameBoard extends JFrame
 
 {
 	
-	JButton play, reset;
+	JButton play, reset, add;
     JComboBox slctplayer, metd;
-	JLabel selectplayer, method, sizelabel, winlengthlabel, add;
+	JLabel selectplayer, method, sizelabel, winlengthlabel;
 	JTextField size , winlength;
 	GameBoard()
 	{
@@ -32,21 +33,27 @@ public class GameBoard extends JFrame
 	    
 	        play=new JButton("PLAY");
             reset=new JButton("RESET");
+            add=new JButton("add");
 	        
 	        
 	        size  = new JTextField();  
-	        winlength = new JPasswordField();
+	        winlength = new JTextField();
 	     
 
 		
 	        
 	        selectplayer.setBounds(60 , 70, 150, 30);  
 	       
-	        method.setBounds(200 , 70, 150, 30);  
-	        sizelabel.setBounds(60 , 200, 150, 30);
-	        winlengthlabel.setBounds(200 , 200, 150, 30);
+	        method.setBounds(500 , 70, 150, 30);  
+	        sizelabel.setBounds(60 , 200, 500, 30);
+	        winlengthlabel.setBounds(700 , 200, 500, 30);
 	        play.setBounds(270 , 400, 150, 30);
-	        reset.setBounds(390 , 400, 150, 30);
+	        reset.setBounds(500 , 400, 150, 30);
+	        add.setBounds(900 , 400, 150, 30);
+	        size.setBounds(250, 200, 150, 30);
+	        winlength.setBounds(900 , 200, 150, 30);
+	       slctplayer.setBounds(200 , 70, 150, 30);
+	       metd.setBounds(630 , 70, 150, 30);
 	        
 	        add(selectplayer);
 	        add(method);
@@ -59,6 +66,7 @@ public class GameBoard extends JFrame
 	        add(winlengthlabel);
 	        add(play);
 	        add(reset);
+	        add(add);
 	        
 	        
 	        
@@ -78,6 +86,17 @@ public class GameBoard extends JFrame
 	    			
 	    		 
 	    		}});	
+	        
+	        
+	        reset.addActionListener(new ActionListener(){
+	    		public void actionPerformed(ActionEvent ae) {
+	    			
+	    			size.setText("");
+	    			winlength.setText("");
+	    			
+	    		 
+	    		}});	
+	    	
 	    	
 			
 	       
