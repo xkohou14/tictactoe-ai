@@ -12,7 +12,7 @@ public class ConsoleViewer {
 		
 		boolean p1Turn = true;
 		while(!ref.gameIsOver(state)) {
-			System.out.println("\n" + p1.getName() + " vs " + p2.getName() + "\n" + state);
+			System.out.println("\n" + p1.getName() + "("+ref.scoreState(state, PlayerSymbol.CIRCLE)+") vs " + p2.getName() + "("+ref.scoreState(state, PlayerSymbol.CROSS)+")\n" + state);
 			if (p1Turn) {
 				state = (GameState) p1.play(state, PlayerSymbol.CIRCLE);
 			} else {
@@ -21,6 +21,7 @@ public class ConsoleViewer {
 			p1Turn = !p1Turn;
 		}
 		
-		System.out.println("\n Result of " + p1.getName() + " vs " + p2.getName() + "\n" + state);
+		System.out.println("\n Result of the game " + p1.getName() + "("+ref.scoreState(state, PlayerSymbol.CIRCLE)+") vs " + p2.getName() + "("+ref.scoreState(state, PlayerSymbol.CROSS)+")\n" + state);
+		System.out.println();
 	}
 }

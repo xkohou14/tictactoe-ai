@@ -27,7 +27,7 @@ public abstract class AI implements IAI {
 	}
 	
 	@Override
-	public Iterable<IGameState> getAllPossibleStates(IGameState state, PlayerSymbol symbol) {
+	public List<IGameState> getAllPossibleStates(IGameState state, PlayerSymbol symbol) {
 		List<IGameState> states = new ArrayList<IGameState>();
 		for(int x = 0; x < state.getBoardSize(); x++) {
 			for(int y = 0; y < state.getBoardSize(); y++) {

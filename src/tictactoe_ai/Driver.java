@@ -15,7 +15,7 @@ public class Driver {
 		Player p1 = new Player(ai1);
 		Player p2 = new Player(ai2);
 		
-		new ConsoleViewer(21, 15, p1, p2, ref);
+		new ConsoleViewer(10, 6, p1, p2, ref);
 		
 	}
 

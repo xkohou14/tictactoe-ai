@@ -86,13 +86,13 @@ public class GameState implements IGameState {
 			for(int y = 0; y < this.getBoardSize(); y++) {
 				switch (getValueOfCell(x, y)) {
 				case NOTHING:
-					str += "-";
+					str += "- ";
 					break;
 				case CIRCLE:
-					str += "0";
+					str += "0 ";
 					break;
 				case CROSS:
-					str += "X";
+					str += "X ";
 					break;
 
 				default:

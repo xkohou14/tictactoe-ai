@@ -1,5 +1,7 @@
 package tictactoe_ai.ai;
 
+import java.util.List;
+
 import tictactoe_ai.game.IGameState;
 import tictactoe_ai.game.PlayerSymbol;
 
@@ -10,5 +12,5 @@ public interface IAI {
 	 * Returns all possible configurations
 	 * @return
 	 */
-	public Iterable<IGameState> getAllPossibleStates(IGameState state, PlayerSymbol symbol);
+	public List<IGameState> getAllPossibleStates(IGameState state, PlayerSymbol symbol);
 }
