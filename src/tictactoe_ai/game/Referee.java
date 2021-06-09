@@ -52,30 +52,55 @@ public abstract class Referee implements IReferee {
 		D_LEFT
 	}
 	
+	public direction opositeDirection(direction d) {
+		switch (d) {
+		case UP:
+			return direction.DOWN;
+		case DOWN:
+			return direction.UP;
+		case RIGHT:
+			return direction.LEFT;
+		case LEFT:
+			return direction.RIGHT;
+		case D_LEFT:
+			return direction.U_RIGHT;
+		case D_RIGHT:
+			return direction.U_LEFT;
+		case U_RIGHT:
+			return direction.D_LEFT;
+		case U_LEFT:
+			return direction.D_RIGHT;
+
+		default:
+			return d;
+		}
+	}
+	
 	public int[] newPos (int x, int y, direction d) {
 		switch (d) {
 		case UP:
-			y -= 1;
-		case DOWN:
-			y += 1;
+			x -= 1;
 			break;
-		case RIGHT:
+		case DOWN:
 			x += 1;
 			break;
+		case RIGHT:
+			y += 1;
+			break;
 		case LEFT:
-			x -= 1;
+			y -= 1;
 			break;
 		case D_LEFT:
-			x -= 1;
-			y += 1;
+			y -= 1;
+			x += 1;
 			break;
 		case D_RIGHT:
 			x += 1;
 			y += 1;
 			break;
 		case U_RIGHT:
-			x += 1;
-			y -= 1;
+			y += 1;
+			x -= 1;
 			break;
 		case U_LEFT:
 			x -= 1;
@@ -120,6 +145,66 @@ public abstract class Referee implements IReferee {
 			}
 		}
 		return empty;
+	}
+	public boolean isEmpty(int x, int y, IGameState state) {
+		try {
+			return state.getValueOfCell(x, y) == CellState.NOTHING;
+		} catch (Exception e) {
+			return false;
+		}
+	}
+	
+	protected List<direction> getDirection(List<int[]> line) {
+		List<direction> directions = new ArrayList<Referee.direction>();
+		
+		if (line.size() > 1) {
+			int[] first = line.get(0);
+			int[] second = line.get(1);
+			int xDelta = second[0] - first[0];
+			int yDelta = second[1] - first[1];
+			int scalar = xDelta * yDelta;
+			if (scalar == 0) { //horizontal or vertical
+				if (xDelta != 0) {
+					if (xDelta > 0) {
+						directions.add(direction.DOWN);
+					} else {
+						directions.add(direction.UP);
+					}
+				}
+				if (yDelta != 0) {
+					if (yDelta > 0) {
+						directions.add(direction.RIGHT);
+					} else {
+						directions.add(direction.LEFT);
+					}
+				}
+			} else {
+				if (scalar > 0) {
+					if (xDelta > 0) {
+						directions.add(direction.D_RIGHT);
+					} else {
+						directions.add(direction.U_LEFT);
+					}
+				} else {
+					if (xDelta > 0) {
+						directions.add(direction.D_LEFT);
+					} else {
+						directions.add(direction.U_RIGHT);
+					}
+				}
+			}
+		} else {
+//			directions.add(direction.UP);
+//			directions.add(direction.DOWN);
+//			directions.add(direction.LEFT);
+//			directions.add(direction.RIGHT);
+//			directions.add(direction.U_LEFT);
+//			directions.add(direction.U_RIGHT);
+//			directions.add(direction.D_LEFT);
+//			directions.add(direction.D_RIGHT);
+		}
+		
+		return directions;
 	}
 
 	@Override
