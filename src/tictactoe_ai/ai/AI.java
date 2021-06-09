@@ -41,4 +41,18 @@ public abstract class AI implements IAI {
 		
 		return states;
 	}
+	
+	@Override
+	public List<int[]> getAllPossibleMoves(IGameState state, PlayerSymbol symbol) {
+		List<int[]> moves = new ArrayList<int[]>();
+		for(int x = 0; x < state.getBoardSize(); x++) {
+			for(int y = 0; y < state.getBoardSize(); y++) {
+				if (state.getValueOfCell(x, y) == CellState.NOTHING) {
+					moves.add(new int[] {x,y});
+				}
+			}
+		}
+		
+		return moves;
+	}
 }

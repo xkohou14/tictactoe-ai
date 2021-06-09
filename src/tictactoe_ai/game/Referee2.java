@@ -39,6 +39,26 @@ public class Referee2 extends Referee {
 						}
 					}
 				}
+				for(List<int[]> line : getAllLines(state, symbol.oposite())) {
+					if (line.size() == 0) {
+						continue;
+					}
+					int[] first = line.get(0);
+					int[] last = line.get(line.size()-1);
+					int lastIndex = state.getBoardSize() - 1;					
+					for(direction d : getDirection(line)) {						
+						int[] newPos = newPos(first[0], first[1], opositeDirection(d));
+						//System.out.println(symbol + " iA [" + first[0] + " " + first[1] + "] n =>["+ newPos[0] + " " + newPos[1] +  "] d " + opositeDirection(d));
+						if (newPos[0] >= 0 && newPos[1] >= 0 && isEmpty(newPos[0], newPos[1], state)) {
+							score -= winC - (winC - line.size() - 1);
+						}
+						newPos = newPos(last[0], last[1], d);
+						//System.out.println(symbol + " A [" + last[0] + " " + last[1] + "] n =>["+ newPos[0] + " " + newPos[1] +  "] d " + d);
+						if (newPos[0] <= lastIndex && newPos[1] <= lastIndex && isEmpty(newPos[0], newPos[1], state)) {
+							score -= winC - (winC - line.size() - 1);
+						}
+					}
+				}
 				//System.out.println("Score " + score);
 				return score;
 			}

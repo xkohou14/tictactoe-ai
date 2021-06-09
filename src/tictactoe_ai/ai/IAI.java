@@ -13,4 +13,5 @@ public interface IAI {
 	 * @return
 	 */
 	public List<IGameState> getAllPossibleStates(IGameState state, PlayerSymbol symbol);
+	public List<int[]> getAllPossibleMoves(IGameState state, PlayerSymbol symbol);
 }
