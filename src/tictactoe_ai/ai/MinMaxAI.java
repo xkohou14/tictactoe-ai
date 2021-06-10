@@ -1,15 +1,9 @@
 package tictactoe_ai.ai;
 
-import java.util.List;
-import java.util.Random;
-
-import com.sun.org.apache.xalan.internal.xsltc.compiler.sym;
-
 import tictactoe_ai.game.CellState;
 import tictactoe_ai.game.IGameState;
 import tictactoe_ai.game.IReferee;
 import tictactoe_ai.game.PlayerSymbol;
-import tictactoe_ai.game.Referee;
 
 public class MinMaxAI extends AI {		
 	
@@ -19,21 +13,11 @@ public class MinMaxAI extends AI {
 	}
 
 	public IGameState getNextState(IGameState state, PlayerSymbol symbol) {
-//		List<IGameState> sts = getAllPossibleStates(state, symbol);
-//		IGameState maxState = sts.get(0);
-//		int maxValue = this.referee.scoreState(maxState, symbol);
-//		for(IGameState s : sts) {
-//			int stateScore = miniMax(s, 5, false, symbol.oposite());			
-//			if (stateScore > maxValue) {
-//				System.out.print(" " + stateScore);
-//				maxState = s;
-//				maxValue = stateScore;
-//			}
-//		}
 		int[] action = miniMax(state.getCopy(), state.getWinCondition(), true, symbol);
 		
 		System.out.println("\nSelected " + action[2] + "  " + action[0] + "  " + action[1]);
-		state.setValueOfCell(symbol, action[0], action[1]);
+		if (action[0] >= 0 && action[1] >= 0)
+			state.setValueOfCell(symbol, action[0], action[1]);
 		return state;
 	}
 	
@@ -68,20 +52,23 @@ public class MinMaxAI extends AI {
 		for (int[] move : getAllPossibleMoves(state, maxPlayer ? symbol : symbol.oposite())) {
 			System.out.println("Move " + (maxPlayer ? symbol : symbol.oposite()));
 			state.setValueOfCell(symbol, move[0], move[1]);
-			actualScore = miniMax(state, depth - 1, !maxPlayer, symbol);
+			actualScore = miniMax(state, depth - 1, !maxPlayer, maxPlayer ? symbol : symbol.oposite());
 			actualScore[0] = move[0];
 			actualScore[1] = move[1];
+			if (ref.isWonByPlayer(state, symbol)) { // there is no need to discover something else
+				return actualScore;
+			}
 			state.setValueOfCell(CellState.NOTHING, move[0], move[1]);
 			System.out.println("After Move " + (maxPlayer ? symbol : symbol.oposite()));
 			
 			if (maxPlayer) {
 				if (actualScore[2] > bestScore[2]) {
-					System.out.println("Set MAX " + actualScore[0] + " " + actualScore[1]);
+					System.out.println("Set MAX " + actualScore[0] + " " + actualScore[1] + " " + actualScore[2]);
 					bestScore = actualScore;
 				}
 			} else {
 				if (actualScore[2] < bestScore[2]) {
-					System.out.println("Set MIN " + actualScore[0] + " " + actualScore[1]);
+					System.out.println("Set MIN " + actualScore[0] + " " + actualScore[1] + " " + actualScore[2]);
 					bestScore = actualScore;
 				}
 			}
