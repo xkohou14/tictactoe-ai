@@ -27,19 +27,23 @@ public class GameBoard extends JFrame
     JRadioButton minimax, alphabeta;
    
    
-	JLabel selectplayer, method, sizelabel, winlengthlabel;
+	JLabel selectplayer, method, sizelabel, winlengthlabel, humanplayer;
 	JTextField size , winlength;
 	public JFrame frame;
 	GameBoard()
 	{
-		String s1 [] = {"Human player", "Bot"};
+		
 		String s2 [] = {"Minimax", "Alpha-beta pruning"};
 		
-		slctplayer = new JComboBox (s1);
+	
 	
 		
-		selectplayer = new JLabel("Select your player");  
+		selectplayer = new JLabel("Player:");  
 		selectplayer.setForeground(Color.blue);  
+		
+		humanplayer = new JLabel("HUMAN PLAYER");  
+		humanplayer.setForeground(Color.blue);
+		
 	       
 		sizelabel = new JLabel("Select your board size");
 		winlengthlabel = new JLabel("Select your win condition");
@@ -57,8 +61,13 @@ public class GameBoard extends JFrame
         
         size  = new JTextField();  
         winlength = new JTextField();
+        //radiobuttons
         minimax= new JRadioButton("Minimax");
         alphabeta = new JRadioButton("Alpha-Beta");
+        
+        ButtonGroup group = new ButtonGroup();
+        group.add(minimax);
+        group.add(alphabeta);
 
         selectplayer.setBounds(60 , 70, 150, 30);  
        
@@ -70,14 +79,14 @@ public class GameBoard extends JFrame
         add.setBounds(900 , 400, 150, 30);
         size.setBounds(250, 200, 150, 30);
         winlength.setBounds(900 , 200, 150, 30);
-        slctplayer.setBounds(250 , 70, 150, 30);
+        humanplayer.setBounds(250 , 70, 150, 30);
         minimax.setBounds(900 , 70, 180, 30); 
         alphabeta.setBounds(900 , 100, 180, 30); 
     
         
         add(selectplayer);
         add(method);
-        add(slctplayer);
+        add(humanplayer);
 
         add(sizelabel);
         
