@@ -6,6 +6,8 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+import tictactoe_ai.ai.FirstAI;
+
 public abstract class Referee implements IReferee {
 
 	List<direction> directions = Arrays.asList(new direction[] {direction.DOWN, direction.D_RIGHT, direction.RIGHT, direction.U_RIGHT});
@@ -42,7 +44,27 @@ public abstract class Referee implements IReferee {
 			for(int y = 0; y < state.getBoardSize(); y++) {
 				for (direction d : directions) {
 					List<int[]> positions = explore(state, x, y, d, symbol);
-					if (positions != null) {
+					
+					if (positions == null) {
+						continue;
+					}
+					
+					boolean lineExists = false;
+					for (List<int[]> line : lists) {
+						if (positions.size() == line.size()) {
+							boolean same = true;
+							for (int i = 0; i < line.size(); i++) {
+								int[] p1 = line.get(i);
+								int[] p2 = positions.get(i);
+								if (p1[0] != p2[0] || p1[1] != p2[1]) {
+									same = false;
+									break;
+								}
+							}
+							lineExists = lineExists || same;
+						}
+					}
+					if (!lineExists) {
 						lists.add(positions);
 					}
 				}
@@ -123,6 +145,9 @@ public abstract class Referee implements IReferee {
 		return new int[] {x,y};
 	}
 	
+	/*
+	 * Return list of position where it has the same symbol in the row
+	 */
 	public List<int[]> explore(IGameState state, int x, int y, direction d, PlayerSymbol symbol) {
 		int[] newP = newPos(x, y, d);
 		if (x > state.getBoardSize()-1 || x < 0 || y < 0 || y > state.getBoardSize()-1) {
@@ -172,6 +197,21 @@ public abstract class Referee implements IReferee {
 		}
 	}
 	
+	/*
+	 * Returns player fields
+	 */
+	public List<int[]> getPlayerPlaces(IGameState state, PlayerSymbol symbol) {
+		List<int[]> list = new ArrayList<int[]>();
+		for(int x = 0; x < state.getBoardSize(); x++) {
+			for(int y = 0; y < state.getBoardSize(); y++) {
+				if (state.getValueOfCell(x, y) == symbol.get()) {
+					list.add(new int[] {x,y});
+				}
+			}
+		}
+		return list;
+	}
+	
 	protected List<direction> getDirection(List<int[]> line) {
 		List<direction> directions = new ArrayList<Referee.direction>();
 		
@@ -211,6 +251,8 @@ public abstract class Referee implements IReferee {
 					}
 				}
 			}
+//			System.out.println("First [" + first[0]+","+first[1]+"] " + 
+//					"Second [" + second[0]+","+second[1]+"] direction " + directions.get(0) );
 		} else {
 //			directions.add(direction.UP);
 //			directions.add(direction.DOWN);
@@ -221,7 +263,6 @@ public abstract class Referee implements IReferee {
 //			directions.add(direction.D_LEFT);
 //			directions.add(direction.D_RIGHT);
 		}
-		
 		return directions;
 	}
 

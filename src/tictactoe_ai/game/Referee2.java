@@ -67,7 +67,7 @@ public class Referee2 extends Referee {
 						}
 					}
 				}
-				//System.out.println("Score " + score + "\n" + state);
+				//System.out.println("Score " + score + "  " + symbol + "\n" + state);
 				return score;
 			}
 				

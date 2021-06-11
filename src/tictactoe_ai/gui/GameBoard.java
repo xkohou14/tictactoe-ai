@@ -6,13 +6,17 @@ import java.awt.event.ActionListener;
 
 import javax.swing.*;
 
+import tictactoe_ai.ai.AI;
+import tictactoe_ai.ai.AlphaBeta;
 import tictactoe_ai.ai.MinMaxAI;
 import tictactoe_ai.game.GameState;
 import tictactoe_ai.game.IGameState;
 import tictactoe_ai.game.IReferee;
 import tictactoe_ai.game.Player;
 import tictactoe_ai.game.PlayerSymbol;
+import tictactoe_ai.game.Referee;
 import tictactoe_ai.game.Referee2;
+import tictactoe_ai.game.Referee3;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,20 +27,27 @@ public class GameBoard extends JFrame
 {
 	
 	JButton play, reset, add;
-    JComboBox slctplayer, metd;
-	JLabel selectplayer, method, sizelabel, winlengthlabel;
+    JComboBox slctplayer;
+    JRadioButton minimax, alphabeta;
+   
+   
+	JLabel selectplayer, method, sizelabel, winlengthlabel, humanplayer;
 	JTextField size , winlength;
 	public JFrame frame;
 	GameBoard()
 	{
-		String s1 [] = {"Human player", "Bot"};
+		
 		String s2 [] = {"Minimax", "Alpha-beta pruning"};
 		
-		slctplayer = new JComboBox (s1);
-		metd = new JComboBox (s2);
+	
+	
 		
-		selectplayer = new JLabel("Select your player");  
+		selectplayer = new JLabel("Player:");  
 		selectplayer.setForeground(Color.blue);  
+		
+		humanplayer = new JLabel("HUMAN PLAYER");  
+		humanplayer.setForeground(Color.blue);
+		
 	       
 		sizelabel = new JLabel("Select your board size");
 		winlengthlabel = new JLabel("Select your win condition");
@@ -54,6 +65,14 @@ public class GameBoard extends JFrame
         
         size  = new JTextField();  
         winlength = new JTextField();
+        //radiobuttons
+        minimax= new JRadioButton("Minimax");
+        alphabeta = new JRadioButton("Alpha-Beta");
+        
+        ButtonGroup group = new ButtonGroup();
+        group.add(minimax);
+        group.add(alphabeta);
+        minimax.setSelected(true);
 
         selectplayer.setBounds(60 , 70, 150, 30);  
        
@@ -64,14 +83,18 @@ public class GameBoard extends JFrame
         reset.setBounds(500 , 400, 150, 30);
         add.setBounds(900 , 400, 150, 30);
         size.setBounds(250, 200, 150, 30);
+        size.setText("3");
         winlength.setBounds(900 , 200, 150, 30);
-        slctplayer.setBounds(250 , 70, 150, 30);
-        metd.setBounds(900 , 70, 150, 30);
+        winlength.setText("3");
+        humanplayer.setBounds(250 , 70, 150, 30);
+        minimax.setBounds(900 , 70, 180, 30); 
+        alphabeta.setBounds(900 , 100, 180, 30); 
+    
         
         add(selectplayer);
         add(method);
-        add(slctplayer);
-        add(metd);
+        add(humanplayer);
+
         add(sizelabel);
         
         add(size);
@@ -79,7 +102,10 @@ public class GameBoard extends JFrame
         add(winlengthlabel);
         add(play);
         add(reset);
-        add(add);        
+        add(minimax);
+        add(alphabeta);
+        add(add);    
+     
 	        
     	this.setVisible(true);  
         this.setSize(1300, 1300);  
@@ -96,22 +122,29 @@ public class GameBoard extends JFrame
         play.addActionListener(new ActionListener(){
     		public void actionPerformed(ActionEvent ae) {
     			int gridSize = 3;
+    			int winC = 3;
     			JPanel panel = new JPanel();
     	        JFrame f = new JFrame("Game");
     	        List<JButton> btns = new ArrayList<JButton>();
     	        
     			try {
     				gridSize = Integer.parseInt(size.getText().toString());
+    				winC = Integer.parseInt(winlength.getText().toString());
     			} catch (Exception e) {
 					e.printStackTrace(); 
 				}
     			panel.setLayout(new GridLayout(gridSize, 
     					gridSize, 
     					hgap, vgap)); // = new JPanel();
-    			Referee2 ref = new Referee2();
-    			MinMaxAI ai = new MinMaxAI(ref);
+    			Referee3 ref = new Referee3();
+    			AI ai;
+    			if (minimax.isSelected()) {
+    				ai = new MinMaxAI(ref);
+    			} else {
+    				ai = new AlphaBeta(ref);
+    			}
     			final Player ai_player = new Player(ai);
-    			GameState state = new GameState(gridSize, gridSize);
+    			GameState state = new GameState(gridSize, winC);
     			for(int i=0;i<gridSize;i++)
     	        {
     	            for(int j=0;j<gridSize;j++)
@@ -128,6 +161,7 @@ public class GameBoard extends JFrame
 								btn.setEnabled(false);
 								ai_player.play(state, PlayerSymbol.CROSS);
 								setBoardState(state, btns);
+								handleWin(state, btns, ref);
 							}
 						});
     	                panel.add(btn);
@@ -140,7 +174,7 @@ public class GameBoard extends JFrame
     			f.pack();
     			f.setVisible(true);
     			setBoardState(state, btns);
-    			playAis(ai_player, new Player(ai), state, btns, ref);
+    			//playAis(ai_player, new Player(ai), state, btns, ref);
     		}}
         );	
         
@@ -203,6 +237,29 @@ public class GameBoard extends JFrame
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
+		}
+	}
+	
+	public void handleWin(IGameState state, List<JButton> btns, Referee ref) {
+		if (ref.isWonByPlayer(state, PlayerSymbol.CIRCLE)) {
+			for (List<int[]> line : ref.getAllLines(state, PlayerSymbol.CIRCLE)) {
+				if (line.size() == state.getWinCondition()) {
+					for (int[] pos : line) {
+						JButton btn = btns.get(pos[0]*state.getBoardSize() + pos[1]);
+						btn.setBackground(Color.GREEN);
+					}
+				}
+			}
+		}
+		if (ref.isWonByPlayer(state, PlayerSymbol.CROSS)) {
+			for (List<int[]> line : ref.getAllLines(state, PlayerSymbol.CROSS)) {
+				if (line.size() == state.getWinCondition()) {
+					for (int[] pos : line) {
+						JButton btn = btns.get(pos[0]*state.getBoardSize() + pos[1]);
+						btn.setBackground(Color.RED);
+					}
+				}
+			}
 		}
 	}
    
