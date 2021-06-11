@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<class-diagram version="1.2.3" icons="true" always-add-relationships="false" generalizations="true" realizations="true" 
-  associations="true" dependencies="false" nesting-relationships="true" router="FAN">  
+<class-diagram version="1.2.3" icons="true" automaticImage="PNG" always-add-relationships="false" generalizations="true" 
+  realizations="true" associations="true" dependencies="false" nesting-relationships="true" router="FAN">  
   <class id="1" language="java" name="tictactoe_ai.ai.MinMaxAI" project="tictactoe_ai" 
     file="/tictactoe_ai/src/tictactoe_ai/ai/MinMaxAI.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="187" width="286" x="116" y="149"/>    
+    <position height="-1" width="-1" x="561" y="69"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -12,7 +12,7 @@
   </class>  
   <class id="2" language="java" name="tictactoe_ai.ai.FirstAI" project="tictactoe_ai" 
     file="/tictactoe_ai/src/tictactoe_ai/ai/FirstAI.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="577" y="283"/>    
+    <position height="-1" width="-1" x="561" y="245"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -21,7 +21,7 @@
   </class>  
   <interface id="3" language="java" name="tictactoe_ai.ai.IAI" project="tictactoe_ai" 
     file="/tictactoe_ai/src/tictactoe_ai/ai/IAI.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="908" y="274"/>    
+    <position height="-1" width="-1" x="916" y="187"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -30,7 +30,7 @@
   </interface>  
   <class id="4" language="java" name="tictactoe_ai.ai.AI" project="tictactoe_ai" 
     file="/tictactoe_ai/src/tictactoe_ai/ai/AI.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="187" width="350" x="621" y="-78"/>    
+    <position height="-1" width="-1" x="669" y="-180"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -39,7 +39,7 @@
   </class>  
   <class id="5" language="java" name="tictactoe_ai.ai.MaxAI" project="tictactoe_ai" 
     file="/tictactoe_ai/src/tictactoe_ai/ai/MaxAI.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="97" width="286" x="1158" y="149"/>    
+    <position height="-1" width="-1" x="933" y="11"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -48,7 +48,7 @@
   </class>  
   <class id="6" language="java" name="tictactoe_ai.game.Referee" project="tictactoe_ai" 
     file="/tictactoe_ai/src/tictactoe_ai/game/Referee.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="259" width="319" x="3" y="223"/>    
+    <position height="-1" width="-1" x="217" y="259"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -57,7 +57,7 @@
   </class>  
   <interface id="7" language="java" name="tictactoe_ai.game.IGameState" project="tictactoe_ai" 
     file="/tictactoe_ai/src/tictactoe_ai/game/IGameState.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="720" y="878"/>    
+    <position height="-1" width="-1" x="722" y="857"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -66,7 +66,7 @@
   </interface>  
   <interface id="8" language="java" name="tictactoe_ai.game.IReferee" project="tictactoe_ai" 
     file="/tictactoe_ai/src/tictactoe_ai/game/IReferee.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="115" width="277" x="-314" y="612"/>    
+    <position height="-1" width="-1" x="435" y="847"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -75,7 +75,7 @@
   </interface>  
   <enumeration id="9" language="java" name="tictactoe_ai.game.PlayerSymbol" project="tictactoe_ai" 
     file="/tictactoe_ai/src/tictactoe_ai/game/PlayerSymbol.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="151" width="144" x="417" y="223"/>    
+    <position height="-1" width="-1" x="506" y="418"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -84,7 +84,7 @@
   </enumeration>  
   <enumeration id="10" language="java" name="tictactoe_ai.game.CellState" project="tictactoe_ai" 
     file="/tictactoe_ai/src/tictactoe_ai/game/CellState.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="133" width="127" x="434" y="612"/>    
+    <position height="-1" width="-1" x="505" y="589"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -102,7 +102,7 @@
   </class>  
   <enumeration id="12" language="java" name="tictactoe_ai.game.Referee.direction" project="tictactoe_ai" 
     file="/tictactoe_ai/src/tictactoe_ai/game/Referee.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="223" width="122" x="3" y="612"/>    
+    <position height="-1" width="-1" x="86" y="538"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -111,7 +111,7 @@
   </enumeration>  
   <class id="13" language="java" name="tictactoe_ai.game.Player" project="tictactoe_ai" 
     file="/tictactoe_ai/src/tictactoe_ai/game/Player.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="151" width="243" x="864" y="223"/>    
+    <position height="-1" width="-1" x="972" y="462"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -129,7 +129,7 @@
   </interface>  
   <class id="15" language="java" name="tictactoe_ai.game.Referee2" project="tictactoe_ai" 
     file="/tictactoe_ai/src/tictactoe_ai/game/Referee2.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="97" width="229" x="165" y="612"/>    
+    <position height="-1" width="-1" x="218" y="716"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
