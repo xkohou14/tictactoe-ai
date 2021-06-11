@@ -9,6 +9,16 @@ import java.util.stream.Stream;
 public abstract class Referee implements IReferee {
 
 	List<direction> directions = Arrays.asList(new direction[] {direction.DOWN, direction.D_RIGHT, direction.RIGHT, direction.U_RIGHT});
+	List<direction> allDirections = Arrays.asList(new direction[] {
+			direction.DOWN, 
+			direction.D_RIGHT, 
+			direction.RIGHT, 
+			direction.U_RIGHT,
+			direction.D_LEFT,
+			direction.U_LEFT,
+			direction.UP,
+			direction.LEFT
+			});
 	
 	@Override
 	public boolean isWonByPlayer(IGameState state, PlayerSymbol symbol) {		
@@ -143,6 +153,14 @@ public abstract class Referee implements IReferee {
 					empty++;
 				}
 			}
+		}
+		return empty;
+	}
+	public int emptyFieldsInNeigborhood(IGameState state, int x, int y) {
+		int empty = 0;
+		for (direction d : allDirections) {
+			int[] nPos = newPos(x, y, d);
+			empty += isEmpty(nPos[0], nPos[1], state) ? 1 : 0;
 		}
 		return empty;
 	}

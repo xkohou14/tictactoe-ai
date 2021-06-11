@@ -25,6 +25,10 @@ public class Referee2 extends Referee {
 					}
 					int[] first = line.get(0);
 					int[] last = line.get(line.size()-1);
+					if (line.size() == 1) {
+						score += emptyFieldsInNeigborhood(state, first[0], first[1]) / 2;
+						continue;
+					}
 					int lastIndex = state.getBoardSize() - 1;					
 					for(direction d : getDirection(line)) {						
 						int[] newPos = newPos(first[0], first[1], opositeDirection(d));
@@ -45,6 +49,10 @@ public class Referee2 extends Referee {
 					}
 					int[] first = line.get(0);
 					int[] last = line.get(line.size()-1);
+					if (line.size() == 1) {
+						score -= emptyFieldsInNeigborhood(state, first[0], first[1]) / 2;
+						continue;
+					}
 					int lastIndex = state.getBoardSize() - 1;					
 					for(direction d : getDirection(line)) {						
 						int[] newPos = newPos(first[0], first[1], opositeDirection(d));
@@ -59,7 +67,7 @@ public class Referee2 extends Referee {
 						}
 					}
 				}
-				//System.out.println("Score " + score);
+				//System.out.println("Score " + score + "\n" + state);
 				return score;
 			}
 				
